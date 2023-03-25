@@ -12,14 +12,14 @@ jobs:
       # 获取源码
       - name: 迁出代码
         # 使用action库  actions/checkout获取源码
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
       # 安装Node10
       - name: 安装node.js
         # 使用action库  actions/setup-node安装node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.0.0
+          node-version: 18.0.0
 
       # 安装依赖
       - name: 安装依赖
@@ -28,10 +28,10 @@ jobs:
       # 打包
       - name: 打包
         run: npm run build
-
       # 上传阿里云
-      - name: 发布到云
+      - name: 发布到阿里云
         uses: easingthemes/ssh-deploy@v2.1.1
+
         env:
           # 私钥
           SSH_PRIVATE_KEY: ${{ secrets.REMOTE_KEY }}
